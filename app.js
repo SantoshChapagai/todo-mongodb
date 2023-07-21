@@ -30,11 +30,7 @@ const item3 = new Item({
 
 const defaultItems = [item1, item2, item3];
 
-Item.insertMany(defaultItems).then(function (docs) {
-  console.log("successfully inserted");
-}).catch(function (err) {
-  console.log(err);
-});
+
 
 async function getItems() {
   const Items = await Item.find({});
@@ -43,7 +39,17 @@ async function getItems() {
 
 app.get("/", function (req, res) {
   getItems().then(function (foundItems) {
-    res.render("list", { listTitle: "Today", todoItems: foundItems });
+    if (foundItems.length === 0) {
+      Item.insertMany(defaultItems).then(function (docs) {
+        console.log("successfully inserted");
+      }).catch(function (err) {
+        console.log(err);
+      });
+      res.redirect("/");
+    } else {
+      res.render("list", { listTitle: "Today", todoItems: foundItems });
+    }
+
   });
 });
 

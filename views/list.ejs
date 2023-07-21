@@ -5,14 +5,14 @@
     </h1>
   </div>
   <div class="box">
-    <% for(var i=0; i<todoItems.length;i++) { %>
-      <div class="item">
-        <input type="checkbox" >
-      <p>
-        <%= todoItems[i].name%>
-      </p>
-    </div>
-      <% } %>
+  <% todoItems.forEach(function(item){ %>
+    <div class="item">
+      <input type="checkbox" >
+    <p>
+      <%= item.name%>
+    </p>
+  </div>
+ <% }) %>
 
   <form class="item" action="/" method="post">
     <input type="text" name="todo" placeholder="New ToDo" autocomplete="off">
