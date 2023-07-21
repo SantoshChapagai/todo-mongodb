@@ -77,14 +77,27 @@ app.get("/:customListName", async function (req, res) {
 
 });
 
-app.post("/", function (req, res) {
+app.post("/", async function (req, res) {
   const itemName = req.body.todo;
+  const listName = req.body.list;
 
   const item = new Item({
     name: itemName
   });
-  item.save();
-  res.redirect("/");
+
+  if (listName === "Today") {
+    item.save();
+    res.redirect("/");
+  } else {
+    try {
+      const foundItem = await List.findOne({ name: listName });
+      foundItem.items.push(item);
+      foundItem.save();
+      res.redirect("/" + listName);
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
 });
 
