@@ -63,6 +63,26 @@ app.post("/", function (req, res) {
 
 });
 
+async function removeItem(err) {
+  try {
+    console.log("successfully deleted.")
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+app.post("/delete", async function (req, res) {
+  const checkedItemId = req.body.checkbox;
+  try {
+    await Item.findByIdAndRemove(checkedItemId);
+    console.log("successfully deleted.");
+    res.redirect("/");
+  } catch (err) {
+    console.log(err);
+  }
+
+})
+
 app.get("/work", function (req, res) {
   res.render("list", { listTitle: "Work List", todoItems: workItems });
 })
