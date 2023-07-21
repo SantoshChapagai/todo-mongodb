@@ -49,20 +49,18 @@ app.get("/", function (req, res) {
     } else {
       res.render("list", { listTitle: "Today", todoItems: foundItems });
     }
-
   });
 });
 
 app.post("/", function (req, res) {
-  const item = req.body.todo;
-  const type = req.body.list;
-  if (type === "Work") {
-    workItems.push(item);
-    res.redirect("/work");
-  } else {
-    items.push(item);
-    res.redirect("/");
-  }
+  const itemName = req.body.todo;
+
+  const item = new Item({
+    name: itemName
+  });
+  item.save();
+  res.redirect("/");
+
 });
 
 app.get("/work", function (req, res) {
