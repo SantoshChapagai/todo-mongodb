@@ -4,7 +4,6 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 const _ = require("lodash");
 
-
 const app = express();
 app.set('view engine', 'ejs');
 
