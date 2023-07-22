@@ -129,7 +129,6 @@ app.post("/delete", async function (req, res) {
 app.get("/about", function (req, res) {
   res.render("about");
 })
-
 app.post("/work", function (req, res) {
   const item = req.body.todo;
   workItems.push(item);
