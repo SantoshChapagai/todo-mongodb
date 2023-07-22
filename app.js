@@ -102,7 +102,6 @@ app.post("/", async function (req, res) {
 
 });
 
-
 app.post("/delete", async function (req, res) {
   const checkedItemId = req.body.checkbox;
   const listName = req.body.listName;
@@ -129,7 +128,6 @@ app.post("/delete", async function (req, res) {
   }
 });
 
-
 app.get("/about", function (req, res) {
   res.render("about");
 })
@@ -140,12 +138,6 @@ app.post("/work", function (req, res) {
   res.redirect("/work");
 });
 
-let port = process.env.PORT;
-if (port == null || port == "") {
-  port = 3000;
-}
-
-app.listen(port, function () {
+app.listen(process.env.PORT || 3000, function () {
   console.log("server has started successfully");
-
 });
