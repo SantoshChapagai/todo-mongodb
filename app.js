@@ -1,16 +1,20 @@
+require('dotenv').config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 const _ = require("lodash");
 
+
 const app = express();
 app.set('view engine', 'ejs');
+
+const password = process.env.password;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-mongoose.connect("mongodb+srv://santosh:Santosh246@cluster0.ve0k6q1.mongodb.net/todolistDB", { useNewUrlParser: true });
+mongoose.connect("mongodb+srv://santosh:" + password + "@cluster0.ve0k6q1.mongodb.net/todolistDB", { useNewUrlParser: true });
 
 const itemsSchema = new Schema({
   name: String

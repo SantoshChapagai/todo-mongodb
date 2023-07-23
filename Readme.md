@@ -1,7 +1,7 @@
 # Todo App
 
 ## Technology stack
-- Node, Express, Ejs, MongoDB, CSS
+- Node, Ejs, MongoDB, CSS
 
 ### About App
 - Display the current day on the top.
